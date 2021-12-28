@@ -23,8 +23,9 @@ impl Server {
                         Ok(_) => {
                             println!("Received a request: {}", String::from_utf8_lossy(&buffer));
 
-                            Request::try_from(&buffer[..]);
-                            let res: &Result<Request> = &buffer[..].try_into();
+                            match Request::try_from(&buffer[..]) {
+                                Ok(req) => {}
+                            }
                         }
                         Err(e) => println!("Failed to read from connection: {}", e),
                     }
